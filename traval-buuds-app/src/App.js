@@ -1,14 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import LoginRegister from './LoginRegister'
+import { Header } from  'semantic-ui-react'
 
-function App() {
+export default class App extends Component{
+  constructor(){
+    super()
+
+    this.state = {
+        status: 'register'
+    }
+  }
+  render() {
+
+
   return (
-    <div className="App">
-      Hello World!
-      <LoginRegister/>
-    </div>
+    <Header as='h3' className="App" block>
+      Welcome to Traval Buuds
+      <LoginRegister 
+      status={this.state.status}
+      />
+    </Header>
   );
 }
+}
 
-export default App;
+
+
