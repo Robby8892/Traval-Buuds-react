@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import {Button, Form, Segment} from 'semantic-ui-react'
 
+import './index.css'
+
 export default class LoginRegister extends Component {
 	constructor(props){
 		super(props)
@@ -28,13 +30,17 @@ export default class LoginRegister extends Component {
 		this.registerAccount()
 	}
 
+	changeStatus = () => {
+		this.props.changeStatus()
+	}
+
 	render(){
 		console.log(this.state);
 		return(
 			<Segment inverted>
 				<Form onSubmit={this.onSubmit} inverted>
 					<Form.Group widths='equal'>
-					{this.props.register !== 'register' ? <Form.Input
+					{this.props.status === 'register' ? <Form.Input
 						type='text'
 						name='username'
 						placeholder='Enter Username'
@@ -57,8 +63,13 @@ export default class LoginRegister extends Component {
 						onChange={this.onChange}
 						/>
 					</Form.Group>
-					<Button>{this.props.register !== 'Login' ? 'Register' : 'Register'}</Button>
+					<Button type='Submit'>{this.props.status === 'register' ? 'Register' : 'Login'}</Button>
 				</Form>
+				{this.props.status === 'register' ? 
+				<small>Already signed up? Click <span onClick={this.changeStatus} className='switch-form'>here</span>.</small>
+				:
+				<small>Need to register? Click <span onClick={this.changeStatus} className='switch-form'>here</span>.</small>
+				}
 			</Segment>
 
 		)

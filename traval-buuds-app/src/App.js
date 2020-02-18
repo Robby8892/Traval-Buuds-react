@@ -12,6 +12,21 @@ export default class App extends Component{
     }
   }
 
+
+  changeStatus = () => {
+
+    if (this.state.status === 'register') {
+      this.setState({
+        status: 'login'
+      })
+
+    } else {
+      this.setState({
+        status: 'register'
+      })
+    }
+  }
+
   register = async (registerInfo) => {
     
     try {
@@ -47,6 +62,7 @@ export default class App extends Component{
       <LoginRegister 
       status={this.state.status}
       register={this.register}
+      changeStatus={this.changeStatus}
       />
     </Header>
   );
