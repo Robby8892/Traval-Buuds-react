@@ -11,6 +11,10 @@ export default class App extends Component{
         status: 'register'
     }
   }
+
+  register = (registerInfo) => {
+    console.log('You made it to register func, here is the reg info', registerInfo );
+  }
   render() {
 
 
@@ -19,6 +23,7 @@ export default class App extends Component{
       Welcome to Traval Buuds
       <LoginRegister 
       status={this.state.status}
+      register={this.register}
       />
     </Header>
   );
