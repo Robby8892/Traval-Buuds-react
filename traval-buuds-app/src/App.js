@@ -8,7 +8,9 @@ export default class App extends Component{
     super(props)
 
     this.state = {
-        status: 'register'
+        status: 'register',
+        loggedInUser: '',
+        loggedIn: false
     }
   }
 
@@ -30,7 +32,6 @@ export default class App extends Component{
   register = async (registerInfo) => {
     
     try {
-    console.log('You made it to register func, here is the reg info', registerInfo );
     const url = process.env.REACT_APP_API_URL + '/api/v1/users/register' 
 
     const registerResponse = await fetch(url, {
@@ -42,29 +43,74 @@ export default class App extends Component{
       }
     })
 
-    console.log('registerInfo response', registerResponse);
-
     const registerJson = await registerResponse.json()
 
-    console.log(registerJson);
+    if(registerResponse.status === 201){
+      this.setState({status: 'login'})
+    }
 
     }catch(err){
       console.log(err);
     }
       
   }
-  render() {
 
+  login = async (loginInfo) => {
+    try{
+      console.log('You made it to login, here is login info', loginInfo);
+      const url = process.env.REACT_APP_API_URL + '/api/v1/users/login' 
+
+      const loginResponse = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(loginInfo),
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      const loginJson = await loginResponse.json()
+
+      console.log('Here is the reponse', loginJson);
+
+      if(loginResponse.status === 200){
+        this.setState({
+          loggedInUser: loginJson.data.username,
+          loggedIn: true
+        })
+      }
+
+    }catch(err){
+      console.log(err);
+    }
+  }
+
+  logout = () => {
+
+  }
+
+  render() {
+    console.log(this.state);
 
   return (
     <Header as='h3' className="App" block>
+     {this.state.loggedIn === true ? 
+        <nav >
+          <li className='logout-nav'>
+            Logout
+          </li>
+        </nav>
+        :
+        null
+      } 
       Welcome to Traval Buuds
       <LoginRegister 
       status={this.state.status}
       register={this.register}
+      login={this.login}
       changeStatus={this.changeStatus}
       />
-      <br/>
+
     <div className='main'>
       <div className='d1'></div>
       <div className='d2'></div>

@@ -3,3 +3,8 @@
 	text-decoration: red wavy underline;
 	cursor: grab;
 }
+
+.logout-nav {
+	background-color: white;
+	list-style: none;
+}

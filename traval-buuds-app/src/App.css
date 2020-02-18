@@ -2,6 +2,17 @@
   text-align: center;
 }
 
+
+.logout-nav {
+	background-color: white;
+	list-style: none;
+	text-decoration-line: underline overline;
+	color: blue;
+	cursor: pointer;
+}
+
+
+
 * {
 	margin: 0;
 	padding: 0;

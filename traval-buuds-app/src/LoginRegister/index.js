@@ -21,13 +21,19 @@ export default class LoginRegister extends Component {
 		})
 	}
 
-	registerAccount = () => {
-		this.props.register(this.state)
+	loginRegister = () => {
+
+		if(this.props.status === 'register'){
+			this.props.register(this.state)
+		}else{
+			this.props.login(this.state)
+		}
+
 	}
 
 	onSubmit = (e) => {
 		e.preventDefault()
-		this.registerAccount()
+		this.loginRegister()
 	}
 
 	changeStatus = () => {
@@ -35,7 +41,6 @@ export default class LoginRegister extends Component {
 	}
 
 	render(){
-		console.log(this.state);
 		return(
 			<Segment inverted>
 				<Form onSubmit={this.onSubmit} inverted>
