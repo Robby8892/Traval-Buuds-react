@@ -13,22 +13,47 @@ export default class PostContainer extends Component {
 	}
 
 
-	getMyPosts = async (userInfo) => {
+	getMyPosts = async () => {
 		
 		try{
 
-		const postsReponse = await fetch( process.env.REACT_APP_API_URL + '/api/v1/posts/', {
-			credentials: 'include'
-		})
-		
-		const postsJson = await postsReponse.json()
+			this.setState({posts: [], getPosts: false})
 
-		if(postsReponse.status === 200) {
-			this.setState({
-				posts: postsJson.data,
-				getPosts: true
+			const postsReponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/posts/', {
+				credentials: 'include'
 			})
+			
+			const postsJson = await postsReponse.json()
+
+			if(postsReponse.status === 200) {
+				this.setState({
+					posts: postsJson.data,
+					getPosts: true
+				})
+			}
+
+		}catch(err){
+			console.log(err);
 		}
+	}
+
+	getOtherUsersPosts = async () => {
+		try{
+
+			this.setState({posts: [], getPosts: false})
+
+			const postsReponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/posts/other_users', {
+				'credentials': 'include'
+			})
+
+			const postsJson = await postsReponse.json()
+
+			if(postsReponse.status === 200){
+				this.setState({
+					posts: postsJson.data, 
+					getPosts: true
+				})
+			}
 
 		}catch(err){
 			console.log(err);
@@ -44,7 +69,7 @@ export default class PostContainer extends Component {
 				<List link>
 				<List.Item as='a'>Home</List.Item>
 				<List.Item onClick={this.getMyPosts} as='a'>My Posts</List.Item>
-				<List.Item as='a'>Posts of Buuds</List.Item>
+				<List.Item onClick={this.getOtherUsersPosts} as='a'>Posts of Buuds</List.Item>
 				<List.Item as='a'>Edit Profile</List.Item>
 				</List>
 			</Header>
