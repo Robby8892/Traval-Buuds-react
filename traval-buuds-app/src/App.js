@@ -64,7 +64,15 @@ export default class App extends Component{
       register={this.register}
       changeStatus={this.changeStatus}
       />
+      <br/>
+    <div className='main'>
+      <div className='d1'></div>
+      <div className='d2'></div>
+      <div className='d3'></div>
+      <div className='d4'></div>
+    </div>
     </Header>
+ 
   );
 }
 }
