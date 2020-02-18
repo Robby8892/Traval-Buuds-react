@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import LoginRegister from './LoginRegister'
+import PostContainer from './PostContainer'
+import AnimatedBackgroundContainer from './AnimatedBackgroundContainer'
 import { Header } from  'semantic-ui-react'
 
 export default class App extends Component{
@@ -111,7 +113,7 @@ export default class App extends Component{
      {this.state.loggedIn === true ?
 
         <nav>
-        <p className='logged-in-as'>Logged in as {this.state.loggedInUser.toUpperCase()}</p>
+        <li className='logged-in-as'>Logged in as {this.state.loggedInUser.toUpperCase()}</li>
           <li onClick={this.logout} className='logout-nav'>
             Logout
           </li>
@@ -128,15 +130,10 @@ export default class App extends Component{
       changeStatus={this.changeStatus}
       />
       :
-      null
+      <PostContainer/>
       }
       {this.state.loggedIn === false ?
-        <div className='main'>
-          <div className='d1'></div>
-          <div className='d2'></div>
-          <div className='d3'></div>
-          <div className='d4'></div>
-        </div>
+        <AnimatedBackgroundContainer/>
         :
         null
       }
