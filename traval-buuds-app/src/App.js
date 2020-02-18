@@ -86,7 +86,7 @@ export default class App extends Component{
   }
 
   logout = () => {
-
+    console.log('You made it to logout');
   }
 
   render() {
@@ -96,7 +96,7 @@ export default class App extends Component{
     <Header as='h3' className="App" block>
      {this.state.loggedIn === true ? 
         <nav >
-          <li className='logout-nav'>
+          <li onClick={this.logout} className='logout-nav'>
             Logout
           </li>
         </nav>
