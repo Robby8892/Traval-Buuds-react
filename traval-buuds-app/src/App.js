@@ -59,7 +59,6 @@ export default class App extends Component{
 
   login = async (loginInfo) => {
     try{
-      console.log('You made it to login, here is login info', loginInfo);
       const url = process.env.REACT_APP_API_URL + '/api/v1/users/login' 
 
       const loginResponse = await fetch(url, {
@@ -72,8 +71,6 @@ export default class App extends Component{
       })
 
       const loginJson = await loginResponse.json()
-
-      console.log('Here is the reponse', loginJson);
 
       if(loginResponse.status === 200){
         this.setState({
@@ -106,7 +103,6 @@ export default class App extends Component{
   }
 
   render() {
-    console.log(this.state);
 
   return (
     <Header as='h3' className="App" block>

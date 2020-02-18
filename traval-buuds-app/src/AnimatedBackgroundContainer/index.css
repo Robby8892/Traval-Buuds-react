@@ -2,7 +2,6 @@
 * {
 	margin: 0;
 	padding: 0;
-	background-color: #2f2f2f;
 
 }
 
@@ -12,6 +11,7 @@
 	width: 100%;
 	position: relative;
 	margin-top: 100px;
+  background-color: #2f2f2f;
 }
 
 .d1 {
