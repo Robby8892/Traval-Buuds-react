@@ -34,13 +34,14 @@ export default class LoginRegister extends Component {
 			<Segment inverted>
 				<Form onSubmit={this.onSubmit} inverted>
 					<Form.Group widths='equal'>
-						<Form.Input
+					{this.props.register !== 'register' ? <Form.Input
 						type='text'
 						name='username'
 						placeholder='Enter Username'
 						value={this.state.username}
 						onChange={this.onChange}
-						/>
+						/> : null}
+						
 						<Form.Input
 						type='email'
 						name='email'
@@ -56,7 +57,7 @@ export default class LoginRegister extends Component {
 						onChange={this.onChange}
 						/>
 					</Form.Group>
-					<Button>Register</Button>
+					<Button>{this.props.register !== 'Login' ? 'Register' : 'Register'}</Button>
 				</Form>
 			</Segment>
 
