@@ -108,29 +108,38 @@ export default class App extends Component{
 
   return (
     <Header as='h3' className="App" block>
-     {this.state.loggedIn === true ? 
-        <nav >
+     {this.state.loggedIn === true ?
+
+        <nav>
+        <p className='logged-in-as'>Logged in as {this.state.loggedInUser.toUpperCase()}</p>
           <li onClick={this.logout} className='logout-nav'>
             Logout
           </li>
         </nav>
         :
-        null
+        'Welcome to Traval Buuds'
       } 
-      Welcome to Traval Buuds
+      
+      {this.state.loggedIn === false ?
       <LoginRegister 
       status={this.state.status}
       register={this.register}
       login={this.login}
       changeStatus={this.changeStatus}
       />
-
-    <div className='main'>
-      <div className='d1'></div>
-      <div className='d2'></div>
-      <div className='d3'></div>
-      <div className='d4'></div>
-    </div>
+      :
+      null
+      }
+      {this.state.loggedIn === false ?
+        <div className='main'>
+          <div className='d1'></div>
+          <div className='d2'></div>
+          <div className='d3'></div>
+          <div className='d4'></div>
+        </div>
+        :
+        null
+      }
     </Header>
  
   );

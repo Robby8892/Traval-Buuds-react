@@ -11,6 +11,9 @@
 	cursor: pointer;
 }
 
+.logged-in-as {
+	background-color: white;
+}
 
 
 * {
