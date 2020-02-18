@@ -85,8 +85,22 @@ export default class App extends Component{
     }
   }
 
-  logout = () => {
-    console.log('You made it to logout');
+  logout = async () => {
+    const url = process.env.REACT_APP_API_URL + '/api/v1/users/logout'
+
+    const logoutResponse = await fetch(url, {
+      method: 'GET'
+    })
+
+    const logoutJson = await logoutResponse.json()
+
+    if(logoutResponse.status === 200){
+      this.setState({
+        status: 'register',
+        loggedInUser: '',
+        loggedIn: false
+      })
+    }
   }
 
   render() {
