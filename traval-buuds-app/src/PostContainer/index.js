@@ -17,7 +17,8 @@ export default class PostContainer extends Component {
 				title: '',
 				post: '',
 				photo: '',
-				story: ''
+				story: '',
+				id: ''
 			},
 			idOfUser: this.props.idOfUser
 		}
@@ -62,12 +63,44 @@ export default class PostContainer extends Component {
 		})
 	}
 
+	updatePost = async () => {
+		try{
+
+			const updatePostResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/posts/' + this.state.postToEdit.id, {
+				method: 'PUT',
+				body: JSON.stringify(this.state.postToEdit),
+				credentials: 'include',
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+
+			console.log('here is updatePostResponse', updatePostResponse);
+			const updatePostJson = await updatePostResponse.json()
+			console.log('here is updatePostJson', updatePostJson);
+			if(updatePostResponse.status === 200){
+
+				const posts = this.state.posts
+				const postToUpdate = this.state.posts.findIndex(post => post.id === this.state.postToEdit.id)
+
+				posts[postToUpdate] = updatePostJson.data
+
+				this.setState({posts: posts})
+				this.closeEditModal()
+
+			}
+
+		}catch(err){
+			console.log(err);
+		}
+
+	}
+
 	handleEditChange = (e) => {
 
-			console.log(e.target.value);
 		this.setState({
 			postToEdit: {
-				...this.props.postToEdit,
+				...this.state.postToEdit,
 				[e.target.name]: e.target.value
 			}
 		})
@@ -75,6 +108,8 @@ export default class PostContainer extends Component {
 
 	handlEditSubmit = (e) => {
 		e.preventDefault()
+
+		this.updatePost()
 	}
 
 	deletePost = async (idOfPostToDelete) => {

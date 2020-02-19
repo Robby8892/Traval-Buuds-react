@@ -42,7 +42,7 @@ export default class LoginRegister extends Component {
 
 	render(){
 		return(
-			<Segment inverted>
+			<Segment className='login-register-form' inverted>
 				<Form onSubmit={this.onSubmit} inverted>
 					<Form.Group widths='equal'>
 					{this.props.status === 'register' ? <Form.Input
@@ -68,7 +68,7 @@ export default class LoginRegister extends Component {
 						onChange={this.onChange}
 						/>
 					</Form.Group>
-					<Button type='Submit'>{this.props.status === 'register' ? 'Register' : 'Login'}</Button>
+					<Button color={'green'} type='Submit'>{this.props.status === 'register' ? 'Register' : 'Login'}</Button>
 				</Form>
 				{this.props.status === 'register' ? 
 				<small>Already signed up? Click <span onClick={this.changeStatus} className='switch-form'>here</span>.</small>

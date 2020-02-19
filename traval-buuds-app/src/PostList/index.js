@@ -20,8 +20,8 @@ export default function PostList(props) {
 							</Grid.Row>
 							{user.id === props.idOfUser ? 
 							<Card.Content>
-							<Button onClick={() => props.editPost(id) }>Edit Post</Button>
-							<Button onClick={() => props.deletePost(id)}>Delete Post</Button>
+							<Button color={'yellow'} onClick={() => props.editPost(id) }>Edit Post</Button>
+							<Button color={'red'} onClick={() => props.deletePost(id)}>Delete Post</Button>
 							</Card.Content>
 							 : 
 							 null

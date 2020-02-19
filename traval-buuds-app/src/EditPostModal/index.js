@@ -33,7 +33,7 @@ export default function EditPostModal (props) {
 					type='text'
 					name='story'
 					value={props.postToEdit.story}
-					onChange={props.handleChange}
+					onChange={props.handleEditChange}
 					/>
 					<Modal.Actions>
 						<Button color={'blue'}>Edit Post!</Button>
