@@ -16,6 +16,11 @@ export default function PostList(props) {
 									<span>{place}</span>
 									<p>{story}</p>
 									<small>Posted: {created_at}</small>
+									{user.id !== props.idOfUser ?
+										<small>By: {user}</small>
+										:
+										null
+									}
 								</Grid.Column>
 							</Grid.Row>
 							{user.id === props.idOfUser ? 

@@ -13,7 +13,8 @@ export default class App extends Component{
         status: 'register',
         loggedInUser: '',
         loggedIn: false,
-        idOfLoggedInUser: ''
+        idOfLoggedInUser: '',
+        message: ''
     }
   }
 
@@ -22,12 +23,14 @@ export default class App extends Component{
 
     if (this.state.status === 'register') {
       this.setState({
-        status: 'login'
+        status: 'login',
+        message: ''
       })
 
     } else {
       this.setState({
-        status: 'register'
+        status: 'register', 
+        message: ''
       })
     }
   }
@@ -49,8 +52,12 @@ export default class App extends Component{
     const registerJson = await registerResponse.json()
 
     if(registerResponse.status === 201){
-      this.setState({status: 'login'})
+      this.setState({status: 'login', message: ''})
     }
+
+    else {
+      this.setState({message: 'A users with that email already exists'})
+    } 
 
     }catch(err){
       console.log(err);
@@ -77,8 +84,11 @@ export default class App extends Component{
         this.setState({
           loggedInUser: loginJson.data.username,
           idOfLoggedInUser: loginJson.data.id,
-          loggedIn: true
+          loggedIn: true,
+          message: ''
         })
+      } else {
+          this.setState({message: 'Username or password is invalid'})
       }
 
     }catch(err){
@@ -117,7 +127,11 @@ export default class App extends Component{
           </li>
         </nav>
         :
-        'Welcome to Traval Buuds'
+        <div>
+        Welcome to Traval Buuds
+        <br/>
+        <small className='message'>{this.state.message}</small>
+        </div>
       } 
       
       {this.state.loggedIn === false ?

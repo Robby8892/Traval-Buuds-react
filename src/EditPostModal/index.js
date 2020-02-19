@@ -32,6 +32,9 @@ export default function EditPostModal (props) {
 					<TextArea
 					type='text'
 					name='story'
+					spellCheck='true'
+					className='form-control'
+					required maxLength='40'
 					value={props.postToEdit.story}
 					onChange={props.handleEditChange}
 					/>

@@ -25,8 +25,23 @@ export default class LoginRegister extends Component {
 
 		if(this.props.status === 'register'){
 			this.props.register(this.state)
+			
+			this.setState({
+				username: '',
+				password: '',
+				email: ''
+			})
+
 		}else{
+			
 			this.props.login(this.state)
+
+			this.setState({
+				username: '',
+				password: '',
+				email: ''
+			})
+
 		}
 
 	}
@@ -49,6 +64,7 @@ export default class LoginRegister extends Component {
 						type='text'
 						name='username'
 						placeholder='Enter Username'
+						required minLength='1'
 						value={this.state.username}
 						onChange={this.onChange}
 						/> : null}
@@ -57,6 +73,7 @@ export default class LoginRegister extends Component {
 						type='email'
 						name='email'
 						placeholder='Enter Email'
+						required minLength='1'
 						value={this.state.email}
 						onChange={this.onChange}
 						/>
@@ -64,6 +81,7 @@ export default class LoginRegister extends Component {
 						type='password'
 						name='password'
 						placeholder='Enter Password'
+						required maxLength='8'
 						value={this.state.password}
 						onChange={this.onChange}
 						/>

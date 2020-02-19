@@ -15,7 +15,7 @@ export default class PostCreateModal extends Component {
 
 	handleChange = (e) => {
 
-
+		// - https://codeburst.io/react-image-upload-with-kittens-cc96430eaece setup file upload instead
 		console.log('e.target', e.target.files);
 		this.setState({
 			[e.target.name]: e.target.value
@@ -25,6 +25,13 @@ export default class PostCreateModal extends Component {
 
 	createNewPost = () => {
 		this.props.createPost(this.state)
+
+		this.setState({			
+			title: '',
+			place: '',
+			photo: '',
+			story: ''
+		})
 	}
 
 	handlSubmit = (e) => {
@@ -68,6 +75,9 @@ export default class PostCreateModal extends Component {
 					type='text'
 					name='story'
 					placeholder='Tell us more'
+					spellCheck='true'
+					className='form-control'
+					required maxLength='40'
 					value={this.state.story}
 					onChange={this.handleChange}
 					/>
