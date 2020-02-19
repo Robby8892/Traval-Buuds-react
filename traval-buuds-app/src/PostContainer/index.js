@@ -75,9 +75,8 @@ export default class PostContainer extends Component {
 				}
 			})
 
-			console.log('here is updatePostResponse', updatePostResponse);
 			const updatePostJson = await updatePostResponse.json()
-			console.log('here is updatePostJson', updatePostJson);
+
 			if(updatePostResponse.status === 200){
 
 				const posts = this.state.posts
@@ -208,7 +207,7 @@ export default class PostContainer extends Component {
 
 
 	render(){
-		console.log(this.state);
+
 		return(
 			<React.Fragment>
 			<Header >

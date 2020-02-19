@@ -33,7 +33,6 @@ export default class PostCreateModal extends Component {
 	}
 
 	render(){
-		console.log(this.state);
 
 		return(
 			<Modal open={this.props.open} closeIcon onClose={this.props.close}>
