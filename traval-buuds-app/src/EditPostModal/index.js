@@ -15,7 +15,7 @@ export default class EditPostModal extends Component {
 
 	render(){
 		return(
-			<Modal closeIcon>
+			<Modal closeIcon open={this.props.open} onClose={this.props.close}>
 				<Header>Edit Post</Header>
 				<Modal.Content>
 					<Form onSubmit={this.handlSubmit}>

@@ -18,7 +18,8 @@ export default class PostContainer extends Component {
 				post: '',
 				photo: '',
 				story: ''
-			}
+			},
+			idOfUser: this.props.idOfUser
 		}
 	}
 
@@ -29,16 +30,28 @@ export default class PostContainer extends Component {
 		})
 	}
 
-	openModal = () => {
+	openCreateModal = () => {
 
 		this.setState({
 			createModalOpen: true
 		})
 	}
 
-	closeModal = () => {
+	closeCreateModal = () => {
 		this.setState({
 			createModalOpen: false
+		})
+	}
+
+	openEditModal = () => {
+		this.setState({
+			editModalOpen: true
+		})
+	}
+
+	closeEditModal = () => {
+		this.setState({
+			editModalOpen: false
 		})
 	}
 
@@ -81,7 +94,7 @@ export default class PostContainer extends Component {
 
 			if (createResonse.status === 201){
 
-				this.closeModal()
+				this.closeCreateModal()
 			}
 
 		}catch(err){
@@ -146,7 +159,7 @@ export default class PostContainer extends Component {
 				<List.Item onClick={this.home} as='a'>Home</List.Item>
 				<List.Item onClick={this.getMyPosts} as='a'>My Posts</List.Item>
 				<List.Item onClick={this.getOtherUsersPosts} as='a'>Posts of Buuds</List.Item>
-				<List.Item onClick={this.openModal} as='a'>Create Post</List.Item>
+				<List.Item onClick={this.openCreateModal} as='a'>Create Post</List.Item>
 				<List.Item as='a'>Edit Profile</List.Item>
 				</List>
 			</Header>
@@ -156,15 +169,19 @@ export default class PostContainer extends Component {
 				:
 				<PostList posts={this.state.posts}
 				deletePost={this.deletePost}
+				idOfUser={this.state.idOfUser}
 				/>
 			}
 			<PostCreateModal 
 			open={this.state.createModalOpen} 
-			close={this.closeModal}
+			close={this.closeCreateModal}
 			createPost={this.createPost}
 			/>
-			<EditPostModal/>
+			<EditPostModal
+			open={this.state.editModalOpen}
+			close={this.closeEditModal}
 
+			/>
 			</React.Fragment>
 	)
 	}

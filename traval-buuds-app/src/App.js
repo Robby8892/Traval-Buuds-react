@@ -12,7 +12,8 @@ export default class App extends Component{
     this.state = {
         status: 'register',
         loggedInUser: '',
-        loggedIn: false
+        loggedIn: false,
+        idOfLoggedInUser: ''
     }
   }
 
@@ -75,6 +76,7 @@ export default class App extends Component{
       if(loginResponse.status === 200){
         this.setState({
           loggedInUser: loginJson.data.username,
+          idOfLoggedInUser: loginJson.data.id,
           loggedIn: true
         })
       }
@@ -126,7 +128,9 @@ export default class App extends Component{
       changeStatus={this.changeStatus}
       />
       :
-      <PostContainer/>
+      <PostContainer
+      idOfUser={this.state.idOfLoggedInUser}
+      />
       }
       {this.state.loggedIn === false ?
         <AnimatedBackgroundContainer/>

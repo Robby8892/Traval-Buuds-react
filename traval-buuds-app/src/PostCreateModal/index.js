@@ -52,7 +52,7 @@ export default class PostCreateModal extends Component {
 					<Form.Input
 					type='text'
 					name='place'
-					place='Where was this?'
+					placeholder='Where was this?'
 					value={this.state.place}
 					onChange={this.handleChange}
 					/>
@@ -60,6 +60,7 @@ export default class PostCreateModal extends Component {
 					<Form.Input
 					type='text'
 					name='photo'
+					placeholder='Link your photo'
 					value={this.state.photo}
 					onChange={this.handleChange}
 					/>

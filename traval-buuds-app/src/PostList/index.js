@@ -7,7 +7,7 @@ export default function PostList(props) {
 
 	return(
 		<div>
-			{props.posts.map(({id, title, photo, place, story, created_at}) => {
+			{props.posts.map(({id, title, photo, place, story, created_at, user}) => {
 				return <Grid centered celled key={id}>
 							<Grid.Row>
 								<Grid.Column width={3}>
@@ -18,10 +18,14 @@ export default function PostList(props) {
 									<small>Posted: {created_at}</small>
 								</Grid.Column>
 							</Grid.Row>
+							{user.id === props.idOfUser ? 
 							<Card.Content>
 							<Button>Edit Post</Button>
 							<Button onClick={() => props.deletePost(id)}>Delete Post</Button>
 							</Card.Content>
+							 : 
+							 null
+							}
 						</Grid>
 			})}
 		</div>
