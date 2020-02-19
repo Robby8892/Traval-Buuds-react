@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Image} from 'semantic-ui-react'
+import { Grid, Image, Card, Button} from 'semantic-ui-react'
 import './index.css'
 
 export default function PostList(props) {
@@ -18,6 +18,10 @@ export default function PostList(props) {
 									<small>Posted: {created_at}</small>
 								</Grid.Column>
 							</Grid.Row>
+							<Card.Content>
+							<Button>Edit Post</Button>
+							<Button onClick={() => props.deletePost(id)}>Delete Post</Button>
+							</Card.Content>
 						</Grid>
 			})}
 		</div>
