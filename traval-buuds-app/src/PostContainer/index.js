@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PostList from '../PostList'
 import PostCreateModal from '../PostCreateModal'
+import EditPostModal from '../EditPostModal'
 import { Header, Image, List, Grid} from 'semantic-ui-react'
 
 export default class PostContainer extends Component {
@@ -10,7 +11,14 @@ export default class PostContainer extends Component {
 		this.state = {
 			getPosts: false,
 			posts: [],
-			createModalOpen: false
+			createModalOpen: false,
+			editModalOpen: false,
+			postToEdit: {
+				title: '',
+				post: '',
+				photo: '',
+				story: ''
+			}
 		}
 	}
 
@@ -155,6 +163,7 @@ export default class PostContainer extends Component {
 			close={this.closeModal}
 			createPost={this.createPost}
 			/>
+			<EditPostModal/>
 
 			</React.Fragment>
 	)
