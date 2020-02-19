@@ -1,55 +1,39 @@
 import React, { Component } from 'react'
 import {Form, Button, Label, Modal, Header, TextArea} from 'semantic-ui-react'
 
-export default class EditPostModal extends Component {
-	constructor(props){
-		super(props)
-
-		this.state = {
-			title: '',
-			place: '',
-			photo: '',
-			story: ''
-		}
-	}
-
-	handleChange = (e) => {
-
-	}
-
-	handlSubmit = (e) => {
-		e.preventDefault()
-	}
-
-	render(){
+export default function EditPostModal (props) {
 		return(
-			<Modal closeIcon open={this.props.open} onClose={this.props.close}>
+			<Modal closeIcon open={props.open} onClose={props.close}>
 				<Header>Edit Post</Header>
 				<Modal.Content>
-					<Form onSubmit={this.handlSubmit}>
+					<Form onSubmit={props.handlEditSubmit}>
 					<Label>Edit Title: </Label>
 					<Form.Input
 					type='text'
 					name='title'
-					value={this.state.title}
+					value={props.postToEdit.title}
+					onChange={props.handleEditChange}
 					/>
 					<Label>Edit Place You Went: </Label>
 					<Form.Input
 					type='text'
 					name='place'
-					value={this.state.place}
+					value={props.postToEdit.place}
+					onChange={props.handleEditChange}
 					/>
 					<Label>Edit Photo: </Label>
 					<Form.Input
 					type='text'
 					name='photo'
-					value={this.state.photo}
+					value={props.postToEdit.photo}
+					onChange={props.handleEditChange}
 					/>
 					<Label>Edit Story: </Label>
 					<TextArea
 					type='text'
 					name='story'
-					value={this.state.story}
+					value={props.postToEdit.story}
+					onChange={props.handleChange}
 					/>
 					<Modal.Actions>
 						<Button color={'blue'}>Edit Post!</Button>
@@ -58,5 +42,4 @@ export default class EditPostModal extends Component {
 				</Modal.Content>
 			</Modal>
 	)
-	}
 }

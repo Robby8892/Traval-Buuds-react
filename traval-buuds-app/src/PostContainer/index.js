@@ -43,11 +43,6 @@ export default class PostContainer extends Component {
 		})
 	}
 
-	// openEditModal = () => {
-	// 	this.setState({
-	// 		editModalOpen: true
-	// 	})
-	// }
 
 	closeEditModal = () => {
 		this.setState({
@@ -65,6 +60,21 @@ export default class PostContainer extends Component {
 				...postToEdit
 			}
 		})
+	}
+
+	handleEditChange = (e) => {
+
+			console.log(e.target.value);
+		this.setState({
+			postToEdit: {
+				...this.props.postToEdit,
+				[e.target.name]: e.target.value
+			}
+		})
+	}
+
+	handlEditSubmit = (e) => {
+		e.preventDefault()
 	}
 
 	deletePost = async (idOfPostToDelete) => {
@@ -194,7 +204,9 @@ export default class PostContainer extends Component {
 			<EditPostModal
 			open={this.state.editModalOpen}
 			close={this.closeEditModal}
-
+			postToEdit={this.state.postToEdit}
+			handleEditChange={this.handleEditChange}
+			handlEditSubmit={this.handlEditSubmit}
 			/>
 			</React.Fragment>
 	)
