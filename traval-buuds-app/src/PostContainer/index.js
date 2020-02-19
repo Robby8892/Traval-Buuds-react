@@ -43,15 +43,27 @@ export default class PostContainer extends Component {
 		})
 	}
 
-	openEditModal = () => {
-		this.setState({
-			editModalOpen: true
-		})
-	}
+	// openEditModal = () => {
+	// 	this.setState({
+	// 		editModalOpen: true
+	// 	})
+	// }
 
 	closeEditModal = () => {
 		this.setState({
 			editModalOpen: false
+		})
+	}
+
+	editPost = (idOfPostToEdit) => {
+		
+		const postToEdit = this.state.posts.find((post) => post.id === idOfPostToEdit)
+
+		this.setState({
+			editModalOpen: true,
+			postToEdit: {
+				...postToEdit
+			}
 		})
 	}
 
@@ -151,6 +163,7 @@ export default class PostContainer extends Component {
 
 
 	render(){
+		console.log(this.state);
 		return(
 			<React.Fragment>
 			<Header >
@@ -170,6 +183,7 @@ export default class PostContainer extends Component {
 				<PostList posts={this.state.posts}
 				deletePost={this.deletePost}
 				idOfUser={this.state.idOfUser}
+				editPost={this.editPost}
 				/>
 			}
 			<PostCreateModal 

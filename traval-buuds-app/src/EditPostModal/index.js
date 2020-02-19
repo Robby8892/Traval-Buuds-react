@@ -13,6 +13,14 @@ export default class EditPostModal extends Component {
 		}
 	}
 
+	handleChange = (e) => {
+
+	}
+
+	handlSubmit = (e) => {
+		e.preventDefault()
+	}
+
 	render(){
 		return(
 			<Modal closeIcon open={this.props.open} onClose={this.props.close}>
