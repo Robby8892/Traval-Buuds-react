@@ -85,7 +85,7 @@ export default class PostContainer extends Component {
 				posts[postToUpdate] = updatePostJson.data
 
 				this.setState({posts: posts})
-				print(this.state.posts)
+				console.log(this.state.posts)
 				this.closeEditModal()
 
 			}
@@ -209,7 +209,7 @@ export default class PostContainer extends Component {
 
 	render(){
 
-		print(this.state.posts)
+		console.log(this.state.posts)
 
 		return(
 			<React.Fragment>
