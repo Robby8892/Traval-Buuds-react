@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import {Form, Button, Label, Modal, Header, TextArea} from 'semantic-ui-react'
+import {Image, Transformation, CloudinaryContext} from 'cloudinary-react'
+
 
 export default class PostCreateModal extends Component {
 	constructor(props){

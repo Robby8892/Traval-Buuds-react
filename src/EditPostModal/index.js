@@ -1,5 +1,6 @@
 import React from 'react'
 import {Form, Button, Label, Modal, Header, TextArea} from 'semantic-ui-react'
+import {Image, Transformation, CloudinaryContext} from 'cloudinary-react'
 
 export default function EditPostModal (props) {
 		return(

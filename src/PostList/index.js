@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid, Image, Card, Button} from 'semantic-ui-react'
 import './index.css'
+import { Transformation, CloudinaryContext} from 'cloudinary-react'
 
 export default function PostList(props) {
 	console.log(props.posts);
