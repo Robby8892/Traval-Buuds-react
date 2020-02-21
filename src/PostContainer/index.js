@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import PostList from '../PostList'
 import PostCreateModal from '../PostCreateModal'
 import EditPostModal from '../EditPostModal'
-import { Header, Image, List, Grid} from 'semantic-ui-react'
 import FriendContainer from '../FriendContainer'
+import FriendRequestContainer from '../FriendRequestContainer'
+import { Header, Image, List, Grid} from 'semantic-ui-react'
+
 
 export default class PostContainer extends Component {
 	constructor(props){
@@ -15,6 +17,7 @@ export default class PostContainer extends Component {
 			createModalOpen: false,
 			editModalOpen: false,
 			myFriends: false,
+			friendRequst: false,
 			postToEdit: {
 				title: '',
 				post: '',
@@ -30,13 +33,26 @@ export default class PostContainer extends Component {
 		this.setState({
 			getPosts: false,
 			posts: [],
+			friendRequst: false,
 			myFriends: false
 		})
 	}
 
 	seeMyFriends = () => {
 		this.setState({
-			myFriends: true
+			myFriends: true,
+			getPosts: false,
+			friendRequst: false,
+			posts: [],
+		})
+	}
+
+	seeMyRequsets = () => {
+		this.setState({
+			friendRequst: true,
+			posts: [],
+			getPosts: false,
+			myFriends: false
 		})
 	}
 
@@ -233,7 +249,7 @@ export default class PostContainer extends Component {
 				<List.Item onClick={this.getOtherUsersPosts} as='a'>Posts of Buuds</List.Item>
 				<List.Item onClick={this.openCreateModal} as='a'>Create Post</List.Item>
 				<List.Item onClick={this.seeMyFriends} as='a'>My Friends</List.Item>
-				<List.Item as='a'>Friend Requsts</List.Item>
+				<List.Item onClick={this.seeMyRequsets}as='a'>Friend Requsts</List.Item>
 				</List>
 			</Header>
 
@@ -262,6 +278,11 @@ export default class PostContainer extends Component {
 				null
 				:
 				<FriendContainer/> 
+			}
+			{this.state.friendRequst === false ?
+				null
+				:
+				<FriendRequestContainer/>
 			}
 			</React.Fragment>
 	)
