@@ -70,7 +70,7 @@ export default class LoginRegister extends Component {
 						/> : null}
 						
 						<Form.Input
-						type='email'
+						type='text'
 						name='email'
 						placeholder='Enter Email'
 						required minLength='1'
