@@ -1,11 +1,39 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Button, Card, Image } from 'semantic-ui-react'
 
-export default function FriendRequestList(props){
+export default class FriendRequestList extends Component{
+	constructor(props){
+		super(props)
+
+		this.state = {
+			status_of_request: ''
+		}
+	}
+
+
+	acceptRequest = (id) => {
+		this.setState({
+			status_of_request: 'accept'
+		})
+
+		this.props.updateRequestSentToMe(id, this.state)
+	}
+
+	declineRequest = (id) => {
+		this.setState({
+			status_of_request: 'decline'
+		})
+
+		this.props.updateRequestSentToMe(id, this.state)
+	}
+
+
+
+	render(){
 
 	return(
 		<React.Fragment>
-			{props.myRequests.map(({id, username}) =>{
+			{this.props.myRequests.map(({id, username}) =>{
 				return	 <Card.Group key={id}>
 								<Card>
 					      			<Card.Content>
@@ -21,10 +49,10 @@ export default function FriendRequestList(props){
 				      				</Card.Content>
 				      				<Card.Content extra>
 								        <div className='ui two buttons'>
-								          <Button name='accept' basic color='green'>
+								          <Button onClick={() => this.acceptRequest(username.id)}name='accept' basic color='green'>
 								            Accept
 								          </Button>
-								          <Button name='decline' basic color='red'>
+								          <Button onClick={() => this.declineRequest(username.id)}name='decline' basic color='red'>
 								            Decline
 								          </Button>
 								        </div>
@@ -36,4 +64,5 @@ export default function FriendRequestList(props){
 
 		</React.Fragment>
 		)
+	}
 } 
