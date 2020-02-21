@@ -33,7 +33,7 @@ export default class FriendRequestContainer extends Component {
 		return(
 
 			<React.Fragment>
-			<FriendRequestList/>
+			<FriendRequestList myRequests={this.state.myRequests}/>
 			</React.Fragment>
 		)
 	}
