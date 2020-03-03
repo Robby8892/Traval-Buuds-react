@@ -16,7 +16,7 @@ export default class FriendRequestList extends Component{
 			status_of_request: 'accept'
 		})
 
-		this.props.updateRequestSentToMe(id, this.state)
+		this.props.updateStateBeforeRequest(id, this.state)
 	}
 
 	declineRequest = (id) => {
@@ -24,7 +24,7 @@ export default class FriendRequestList extends Component{
 			status_of_request: 'decline'
 		})
 
-		this.props.updateRequestSentToMe(id, this.state)
+		this.props.updateStateBeforeRequest(id, this.state)
 	}
 
 

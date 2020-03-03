@@ -7,6 +7,7 @@ export default class FriendRequestContainer extends Component {
 		super()
 		this.state = {
 			myRequests: [],
+			idOfRequestToUpdate: -1,
 			requestToUpdate: {
 				status_of_request: ''
 			}
@@ -14,17 +15,25 @@ export default class FriendRequestContainer extends Component {
 		}
 	}
 
+	updateStateBeforeRequest = async (id, status) => {
 
-
-	updateRequestSentToMe = async (id, status_of_request) => {
-		this.setState({
+	const updateState = await this.setState({
+			idOfRequestToUpdate: id,
 			requestToUpdate: {
-				...status_of_request
+				status_of_request: status
 			}
-		})
+		})	
+
+		console.log(status);
+	}
 
 
-		const updateRequestResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/friends/friend_request/' + id , {
+
+	updateRequestSentToMe = async () => {
+
+
+
+		const updateRequestResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/friends/friend_request/' + this.state.idOfRequestToUpdate , {
 			credentials: 'include',
 			method: 'PUT',
 			body: JSON.stringify(this.state.requestToUpdate),
@@ -33,7 +42,9 @@ export default class FriendRequestContainer extends Component {
 			}
 		})
 
-		const updateRequestJson = updateRequestResponse.json()
+		const updateRequestJson = await updateRequestResponse.json()
+
+		console.log(updateRequestJson);
 
 
 	}
@@ -59,13 +70,14 @@ export default class FriendRequestContainer extends Component {
 
 	render(){
 		console.log(this.state);
+		console.log(this.state.requestToUpdate.status_of_request);
 		return(
 
 			<React.Fragment>
 			<FriendRequestList 
 			myRequests={this.state.myRequests}
 			onClickRequest={this.onClickRequest}
-			updateRequestSentToMe={this.updateRequestSentToMe}
+			updateStateBeforeRequest={this.updateStateBeforeRequest}
 			status_of_request={this.status_of_request}
 			/>
 			</React.Fragment>

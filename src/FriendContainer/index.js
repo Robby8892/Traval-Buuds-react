@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import FriendList from '../FriendList'
-import { List, Label, Tab, Button } from 'semantic-ui-react'
+
 
 export default class FriendContainer extends Component {
 	constructor(props){
